@@ -1,0 +1,9 @@
+f7-popup#publisherPopup
+  f7-page(navbar-fixed='')
+    f7-navbar(theme='white')
+      f7-nav-left
+        f7-link(:text="$t('publisher.close')", popup-close='')
+      f7-nav-title(:title="$t('publisher.title')")
+      f7-nav-right
+        f7-link(:text="$t('publisher.send')", @click='sendTweet')
+    editor(:placeholder="$t('publisher.placeholder')", @text:change='editorTextChange')

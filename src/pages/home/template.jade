@@ -1,0 +1,39 @@
+f7-page
+  f7-navbar(:title="$t('home.title')")
+    f7-nav-right
+      f7-link(popup-open='#publisherPopup', icon-f7='compose', icon-size='22') 
+      //- f7-button(fill,raised,popup-open="#publisherPopup") Popup
+  f7-fab(color='pink', @click='doSomething')
+    // First icon is visible when Speed Dial actions are closed
+    f7-icon(f7='add')
+    // Second icon is visible when Speed Dial actions are opened
+    f7-icon(f7='close')
+    // Speed Dial Buttons
+    f7-fab-buttons
+      f7-fab-button(color='orange') A
+      f7-fab-button(color='green') B
+      f7-fab-button(color='blue') C
+
+
+  div(v-if="posts.length <= 0")
+    f7-block-title No data to display
+  div(v-if="posts.length > 0")
+
+    f7-block-title Latest Posts
+    //- f7-block(strong='')
+    .card.demo-facebook-card(v-for="post in posts")
+      .card-header
+        .demo-facebook-avatar
+          img(:src="post.owner.profile_img_url", width='34', height='34')
+        .demo-facebook-name {{post.owner.displayname}}
+        .demo-facebook-date {{fromNow(post.date)}}
+      .card-content.card-content-padding
+        p {{post.post_text}}
+        img(:src="post.medias.photos_url[0]", class="center-cropped", @click="openPhotoBrowser(post)")
+        p.likes Likes: {{post.medias.likes_count}}    Comments: {{post.medias.comments_count}}
+      .card-footer
+        a.link(href='#') Like
+        a.link(href='#') Comment
+        a.link(href='#') Share
+        //- Floating Button 
+        

@@ -1,0 +1,10 @@
+// GENERAL
+export const SET_PROGRESS = 'SET_PROGRESS'
+export const CHANGE_LOCAL = 'CHANGE_LOCAL'
+
+// POST
+export const POST_LIST = 'POST_LIST'
+export const POST_DELETE = 'POST_DELETE'
+export const POST_COMMENT_LIST = 'POST_COMMENT_LIST'
+export const POST_COMMENT_CREATE = 'POST_COMMENT_CREATE'
+export const POST_LIKE = 'POST_LIKE'
