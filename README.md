@@ -2,11 +2,19 @@
 
 A full-featured Framework7 Vue with Webpack setup with hot-reload & css extraction. Based on [Vue Webpack Boilerplate](https://github.com/vuejs-templates/webpack)
 
+Features :
+- Jade Template
+- Vuex state management
+- Webpack hot-reload server
+- Less, sass loaders
+- i18n localization
+
+
 ## Usage
 
 ### 1. Download this repository
 ```
-git clone https://github.com/framework7io/framework7-template-vue-webpack my-app
+git clone https://github.com/omarghader/Framework7-Vue-Jade-Webpack my-app
 ```
 
 Repository will be downloaded into `my-app/` folder
@@ -43,7 +51,7 @@ Just put the contents of `www` folder in your cordova's project root `www` folde
 ## One command install
 
 ```
-git clone https://github.com/framework7io/framework7-template-vue-webpack my-app &&
+git clone https://github.com/omarghader/Framework7-Vue-Jade-Webpack my-app &&
 cd my-app &&
 npm install &&
 npm run dev
