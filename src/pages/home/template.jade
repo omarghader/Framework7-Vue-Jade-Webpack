@@ -1,8 +1,14 @@
 f7-page
   f7-navbar(:title="$t('home.title')")
+    f7-nav-left
+      f7-link(v-show="!secret", login-screen-open="#loginPage", icon-f7='login', icon-size='22') 
+    //- f7-nav-title()
+    
     f7-nav-right
       f7-link(popup-open='#publisherPopup', icon-f7='compose', icon-size='22') 
+    
       //- f7-button(fill,raised,popup-open="#publisherPopup") Popup
+  //- Floating Button 
   f7-fab(color='pink', @click='doSomething')
     // First icon is visible when Speed Dial actions are closed
     f7-icon(f7='add')
@@ -13,12 +19,12 @@ f7-page
       f7-fab-button(color='orange') A
       f7-fab-button(color='green') B
       f7-fab-button(color='blue') C
-
+  f7-link.raised.big.fill(href="#", login-screen-open="#loginPage") Open Login Screen
 
   div(v-if="posts.length <= 0")
     f7-block-title No data to display
   div(v-if="posts.length > 0")
-
+    
     f7-block-title Latest Posts
     //- f7-block(strong='')
     .card.demo-facebook-card(v-for="post in posts")
@@ -35,5 +41,4 @@ f7-page
         a.link(href='#') Like
         a.link(href='#') Comment
         a.link(href='#') Share
-        //- Floating Button 
         

@@ -1,6 +1,10 @@
 // GENERAL
 export const SET_PROGRESS = 'SET_PROGRESS'
 export const CHANGE_LOCAL = 'CHANGE_LOCAL'
+export const CHECK_LOGIN = 'CHECK_LOGIN'
+export const CHECK_EXIT = 'CHECK_EXIT'
+export const RESET_AUTH = 'RESET_AUTH'
+
 
 // POST
 export const POST_LIST = 'POST_LIST'

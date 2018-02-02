@@ -1,22 +1,15 @@
-// import {
-//   getAdvance,
-//   getProfile,
-//   getSettings,
-//   login,
-//   clearAuth,
-// } from '@/vuex/actions'
-
 import template from './template.jade'
 import style from './style.scss'
+import {mapActions, mapState} from 'vuex'
 
 var name = 'login'
 
 export default {
   name,
-  template: template({style, name}),
+  template: template({style}),
 
   data: () => ({
-    login: null,
+    username: null,
     password: null,
   }),
 
@@ -36,31 +29,51 @@ export default {
   // },
 
   created() {
-    // this.clearAuth('message')
-    //
-    // if (this.$get('auth')) {
-    //   setTimeout(this.redirect, 1000)
-    // }
+    this.clearAuth('message')
+
+    if (this.auth) {
+      setTimeout(this.redirect, 1000)
+    }
   },
 
+  computed: {
+    ...mapState({
+      // arrow functions can make the code very succinct!
+      auth: state => state.auth.login,
+      message: state => state.auth.message,
+
+    }),
+  },
   methods: {
+    ...mapActions({
+      getAdvance: 'getAdvance',
+      getProfile: 'getProfile',
+      getSettings: 'getSettings',
+      authLogin: 'login',
+      clearAuth: 'clearAuth',
+    }),
+
     onFocus() {
       this.clearAuth('message')
     },
-
+    onChange(event) {
+      console.log(this.username)
+      // this.clearAuth('message')
+    },
     onSubmit() {
+      console.log(this.username, this.password)
       this.authLogin({
-        login: this.$get('login'),
-        password: this.$get('password'),
+        username: this.username,
+        password: this.password,
         // redirect if auth ok
         callback: this.redirect,
       })
     },
 
     redirect() {
-      this.getAdvance()
-      this.getProfile()
-      this.getSettings()
+      // this.getAdvance()
+      // this.getProfile()
+      // this.getSettings()
 
       var route = {
         name: 'tabs',
@@ -70,4 +83,5 @@ export default {
       this.$router.go(route)
     },
   },
+
 }

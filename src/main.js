@@ -36,7 +36,7 @@ const i18n = new VueI18n({
 
 
 // Init App
-new Vue({
+window.mainApp = new Vue({
   el: '#app',
   template: '<app/>',
   store,

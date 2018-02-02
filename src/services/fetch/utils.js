@@ -38,9 +38,7 @@ export function fetch(settings = {}, params) {
   // TODO: remove this to another point!!!
   // var auth = store.state.auth
   // if (auth.login === 'demo' && auth.password === 'demo') {
-    console.log('fetch')
     return fixture()
-
   // }
 
   // return Vue.http.get(settings).then(parser)

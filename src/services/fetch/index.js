@@ -3,7 +3,7 @@ import VueResource from 'vue-resource'
 import { URL } from './utils'
 
 // import advance from './advance'
-// import auth from './auth'
+import auth from './auth'
 // import containerList from './container-list'
 // import containerInfo from './container-info'
 // import billList from './bill-list'
@@ -20,7 +20,7 @@ Vue.http.options.crossOrigin = true
 
 export default {
   // advance,
-  // auth,
+  auth,
   // container: {
   //   list: containerList,
   //   info: containerInfo,

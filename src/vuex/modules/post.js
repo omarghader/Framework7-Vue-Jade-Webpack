@@ -28,8 +28,6 @@ export const mutations = {
 export const actions = {
   getPostList({ /*actions,*/ commit }) {
     // commit(SET_PROGRESS, true)
-    console.log('getPostList')
-
     fetch.post().then( payload => {
       console.log(payload)
       commit('POST_LIST', payload)

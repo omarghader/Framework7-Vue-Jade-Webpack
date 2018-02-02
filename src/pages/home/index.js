@@ -19,6 +19,8 @@ export default {
 
       // passing the string value 'count' is same as `state => state.count`
       perPage: state => state.post.perPage,
+      username: state => state.auth.login,
+      secret: state => state.auth.secret,
 
     }),
 
@@ -57,8 +59,6 @@ export default {
      // Code that will run only after the
      // entire view has been rendered
         this.getPostList()
-        console.log('mounted')
-
 
    })
   }
