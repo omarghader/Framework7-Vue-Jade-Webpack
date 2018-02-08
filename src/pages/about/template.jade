@@ -1,0 +1,29 @@
+f7-page
+  f7-navbar(:title="$t('about.title')", back-link="Back")
+  
+  f7-icon(id="logoEmblem", if-ios="f7:logoEmblem", if-md="material:logoEmblem", class=style['logo-emblem'])
+  f7-icon(id="logoText", if-ios="f7:logoText", if-md="material:logoText", class=style['logo-text'], height='65', width='120')
+
+
+  .list.no-margin
+    ul
+      li
+        a.item-link.item-content(href="mailto:citiesapp2014@gmail.com")
+          .item-media
+            f7-icon(material="bug_report")
+          .item-inner
+            .item-title {{$t('about.developer')}}
+
+      li
+        a.item-link.item-content(href="/feedback/")
+          .item-media
+            i.f7-icons star
+          .item-inner
+            .item-title {{$t('about.feedback')}}
+            
+      li
+        a.item-link.item-content(href="#")
+          .item-media
+            i.f7-icons codeWorking
+          .item-inner
+            .item-title {{version}}

@@ -1,25 +1,12 @@
-f7-page
-  f7-navbar(:title="$t('home.title')")
+f7-page(infinite, @infinite="onInfiniteScroll")
+  f7-navbar
     f7-nav-left
       f7-link(v-show="!secret", login-screen-open="#loginPage", icon-f7='login', icon-size='22') 
-    //- f7-nav-title()
+      f7-link(v-show="secret", panel-open="left", icon-if-ios="f7:menu", icon-if-md="material:menu", icon-size='22') 
+    f7-nav-title(:title="$t('home.title')")
     
     f7-nav-right
       f7-link(popup-open='#publisherPopup', icon-f7='compose', icon-size='22') 
-    
-      //- f7-button(fill,raised,popup-open="#publisherPopup") Popup
-  //- Floating Button 
-  f7-fab(color='pink', @click='doSomething')
-    // First icon is visible when Speed Dial actions are closed
-    f7-icon(f7='add')
-    // Second icon is visible when Speed Dial actions are opened
-    f7-icon(f7='close')
-    // Speed Dial Buttons
-    f7-fab-buttons
-      f7-fab-button(color='orange') A
-      f7-fab-button(color='green') B
-      f7-fab-button(color='blue') C
-  f7-link.raised.big.fill(href="#", login-screen-open="#loginPage") Open Login Screen
 
   div(v-if="posts.length <= 0")
     f7-block-title No data to display
@@ -34,11 +21,17 @@ f7-page
         .demo-facebook-name {{post.owner.displayname}}
         .demo-facebook-date {{fromNow(post.date)}}
       .card-content.card-content-padding
-        p {{post.post_text}}
+        p {{post.medias.text}}
         img(:src="post.medias.photos_url[0]", class="center-cropped", @click="openPhotoBrowser(post)")
         p.likes Likes: {{post.medias.likes_count}}    Comments: {{post.medias.comments_count}}
       .card-footer
-        a.link(href='#') Like
-        a.link(href='#') Comment
-        a.link(href='#') Share
+        a.link(href='#', @click="like(post)") 
+          f7-icon.padding(if-ios="f7:heart", if-md="f7:heart")
+          | Like
+        a.link(href='#', @click="comment(post)")
+          f7-icon.padding(if-ios="material:comment", if-md="material:comment")
+          | Comment
+        a.link(href='#', @click="share(post)")
+          f7-icon.padding(if-ios="material:share", if-md="material:share")
+          | Share
         

@@ -1,0 +1,14 @@
+f7-page(name="feedback")
+  f7-navbar(:title="$t('feedback.title')", back-link="Back")
+  
+  f7-fab(color="red", v-if='isAndroid', v-show='textarea.trim()', @click.stop.prevent='onSubmit')
+    f7-icon(if-ios="f7:check", if-md="material:check")
+  
+  .block
+    p {{ $t('feedback.text') }}
+    form(@submit.stop.prevent='onSubmit').list-block
+      .item-input
+        textarea.resizable(
+          v-model='textarea',
+          debounce='500',
+          :placeholder="$t('feedback.placeholder')")

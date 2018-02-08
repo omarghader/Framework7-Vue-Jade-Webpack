@@ -80,7 +80,7 @@ export default {
         params: {tab: 'containers'}
       }
 
-      this.$router.go(route)
+      // this.$router.go(route)
     },
   },
 

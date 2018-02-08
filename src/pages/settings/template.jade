@@ -1,0 +1,54 @@
+f7-page(navbar-fixed)
+  f7-navbar(:title='$t("settings.title")', back-link="Back")
+  .content-block-title {{ $t('settings.titleNotify') }}
+  
+  .list.clear-top
+    ul.icon-color-default
+      li
+        .item-content
+          .item-media
+            f7-icon(if-ios="material:email", if-md="material:email")
+          .item-inner
+            .item-title {{$t('settings.email')}}
+            .item-after
+              label.toggle.toggle-init
+                input(type='checkbox', name="email", @change='handleToggleNotify', :checked='settings.notifyBy.email')
+                span.toggle-icon
+        li
+          .item-content
+            .item-media
+              f7-icon(if-ios="material:phone", if-md="material:phone")
+            .item-inner
+              .item-title {{$t('settings.phone')}}
+              .item-after
+                label.toggle.toggle-init
+                  input(type='checkbox', name="phone", @change='handleToggleNotify', :checked='settings.notifyBy.phone')
+                  span.toggle-icon
+            
+        li.item-divider hhh
+
+  
+        li
+          .item-content
+            .item-media
+              f7-icon(if-ios="material:email", if-md="material:email")
+            .item-inner
+              .item-title {{$t('settings.email')}}
+              .item-after
+                label.toggle.toggle-init
+                  input(type='checkbox', name="email", @change='handleToggleNotify', :checked='settings.notifyBy.email')
+                  span.toggle-icon          
+        li(@click="openLangs")
+          .item-content
+            .item-media
+              f7-icon(if-ios="f7:world", if-md="material:language")
+            .item-inner
+              .item-title {{$t('settings.lang')}}
+              .item-after
+                    
+
+
+    //-     li: item-content(
+    //-         icon='world',
+    //-         :title="$t('settings.lang')",
+    //-         @click='openLangs')
