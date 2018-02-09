@@ -1,6 +1,7 @@
 f7-page(navbar-fixed)
   f7-navbar(:title='$t("settings.title")', back-link="Back")
-  .content-block-title {{ $t('settings.titleNotify') }}
+
+  .block-title {{ $t('settings.titleNotify') }}
   
   .list.clear-top
     ul.icon-color-default
@@ -36,7 +37,7 @@ f7-page(navbar-fixed)
               .item-title {{$t('settings.email')}}
               .item-after
                 label.toggle.toggle-init
-                  input(type='checkbox', name="email", @change='handleToggleNotify', :checked='settings.notifyBy.email')
+                  input(type='checkbox', name="avatar", @change='handleToggleNotify', :checked='settings.notifyBy.avatar')
                   span.toggle-icon          
         li(@click="openLangs")
           .item-content

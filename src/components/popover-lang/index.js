@@ -36,7 +36,7 @@ export default res => new Promise( resolve => resolve({
         onClick: () => this.changeLang(lang.key),
       }))
 
-      buttons.unshift({text: this.$t('settings.change.lang'), label: true})
+      buttons.unshift({text: this.$t('settings.lang'), label: true})
 
 
       var actionSheet = mainApp.$f7.actions.create({

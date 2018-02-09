@@ -1,4 +1,5 @@
-f7-page(infinite, @infinite="onInfiniteScroll")
+f7-page(infinite, :infinite-preloader="posts.length > 2",  @infinite="onInfiniteScroll",
+        ptr, @ptr:refresh="ptrRefresh")
   f7-navbar
     f7-nav-left
       f7-link(v-show="!secret", login-screen-open="#loginPage", icon-f7='login', icon-size='22') 

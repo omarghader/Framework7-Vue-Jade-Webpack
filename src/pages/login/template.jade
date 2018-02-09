@@ -12,10 +12,15 @@ f7-login-screen#loginPage
           f7-input(type='password', @input="password = $event.target.value", clear-button='', :placeholder.once="$t('login.password.placeholder')")
       f7-list
         f7-block
-         p.list-block-label.color-red {{ message }}
-         p.content-block.color-gray {{ $t('login.description') }}
-          .row
-            .col-50: f7-link(class=style.cancel, login-screen-close='', link="/")
-              | {{ $t('login.btn.cancel') }}
-            .col-50: f7-button(class=style.login, @click="onSubmit" type='submit')
-              | {{ $t('login.btn.login') }}
+        p.list-block-label.color-red {{ message }}
+        p.content-block.color-gray {{ $t('login.description') }}
+        .row
+          .col-50: f7-link(class=style.cancel, login-screen-close='', link="/")
+            | {{ $t('login.btn.cancel') }}
+          .col-50: f7-button(class=style.login, @click="onSubmit" type='submit')
+            | {{ $t('login.btn.login') }}
+        .row.center-text
+          .col-20
+          .col-60
+            .fb-login-button(data-max-rows='1', data-size='large', data-button-type='continue_with', data-show-faces='false', data-auto-logout-link='false', data-use-continue-as='false')
+          .col-20

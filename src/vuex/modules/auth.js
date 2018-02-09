@@ -44,12 +44,8 @@ export const actions = {
       headers: { Authorization: `Basic ${btoa(login + ':' + password)}` },
     }
 
-    // console.log(this.$f7, "F7.showIndicator()")
-    console.log(mainApp)
     mainApp.$f7.preloader.show()
-    setTimeout(() => {
-      mainApp.$f7.preloader.hide()
-    }, 1000)
+
     commit(CHECK_LOGIN, {login, password})
 
     fetch.auth.login(settings).then( data => {
@@ -93,7 +89,6 @@ export const actions = {
   // },
 
   clearAuth({ commit }) {
-    console.log('Clear Auth ', RESET_AUTH)
     commit(RESET_AUTH, 'message')
   },
 }

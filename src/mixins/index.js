@@ -5,7 +5,22 @@ export default {
   methods: {
     openLoginModal(callback){
       if (!this.secret && !this.username) {
-        mainApp.$f7.loginScreen.open("#loginPage")
+
+        const toastLogin = mainApp.$f7.toast.create({
+          text: this.$t("login.needLogin"),
+          closeButton: false,
+          closeButtonText: 'Login',
+          closeButtonColor: 'red',
+          closeTimeout: 2000,
+          // on: {
+          //   close: function () {
+          //     mainApp.$f7.loginScreen.open("#loginPage")
+          //   },
+          // }
+        })
+
+        toastLogin.open()
+
       } else {
         callback()
       }

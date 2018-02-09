@@ -34,7 +34,7 @@ export function fetch(settings = {}, params) {
   var { fixture, parser } = params
 
   extendSettings(settings, params)
-  console.log('FETCH', settings)
+  // console.log('FETCH', settings)
   // TODO: remove this to another point!!!
   // var auth = store.state.auth
   // if (auth.login === 'demo' && auth.password === 'demo') {

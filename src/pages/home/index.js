@@ -15,6 +15,9 @@ export default {
 
     }
   },
+  created() {
+    // this.$on("ptr:refresh", this.ptrRefresh)
+  },
   computed: {
       ...mapState({
       // arrow functions can make the code very succinct!
@@ -29,7 +32,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(['getPostList', 'getNextPage']),
+    ...mapActions(['getPostList', 'getNextPage', 'resetPagination']),
 
     fromNow: function (timestamp){
       return moment(timestamp).fromNow()
@@ -46,16 +49,23 @@ export default {
       pb.open()
     },
 
-    doSomething: function () {
-      console.log('hi')
-    },
-
     onInfiniteScroll: function() {
-      console.log('infinite, Page nb : ', this.pagination.page, this.page)
+      if (!this.posts || this.posts.length === 0 ) return
+
       this.getNextPage({
         perPage: this.pagination.perPage,
         page: this.pagination.page + 1
       })
+    },
+
+    ptrRefresh: function() {
+
+      this.resetPagination()
+
+      setTimeout(()=>{
+        this.getPostList()
+        mainApp.$f7.ptr.done()
+      } , 1000)
     },
 
     like: function(post) {
@@ -75,8 +85,6 @@ export default {
 
     },
 
-  },
-  created() {
   },
 
   mounted() {
