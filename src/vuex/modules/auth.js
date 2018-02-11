@@ -28,13 +28,13 @@ export const mutations = {
   },
 
   [RESET_AUTH](state, name) {
-    console.log('RESET_AUTH')
     state[name] = null
   },
 }
 
 // actions
 export const actions = {
+
   login({ commit }, payload) {
     var { login, password, callback = null } = payload
 
@@ -44,12 +44,8 @@ export const actions = {
       headers: { Authorization: `Basic ${btoa(login + ':' + password)}` },
     }
 
-    // console.log(this.$f7, "F7.showIndicator()")
-    console.log(mainApp)
     mainApp.$f7.preloader.show()
-    setTimeout(() => {
-      mainApp.$f7.preloader.hide()
-    }, 1000)
+
     commit(CHECK_LOGIN, {login, password})
 
     fetch.auth.login(settings).then( data => {
@@ -57,7 +53,8 @@ export const actions = {
       commit(CHECK_LOGIN, data)
 
       if (callback) { callback() }
-
+      console.log('closeLogin')
+      mainApp.$f7.loginScreen.close("#loginPage")
       return true
     }).catch( ({ data, status }) => {
       if (status === 401) {
@@ -68,32 +65,36 @@ export const actions = {
       return true
     }).then(()=>{
       mainApp.$f7.preloader.hide()
+
     })
   },
 
-  // logout({ commit }) {
-  //   F7.showIndicator()
-  //   commit(RESET_AUTH, 'login')
-  //
-  //   fetch.auth.logout().catch( error => {
-  //     return error
-  //   }).then( () => {
-  //     commit(CHECK_EXIT)
-  //     F7.hideIndicator()
-  //   })
-  // },
-  //
-  // reLogin({ actions, state }, { callback }) {
-  //   console.log('>>> state =', state)
-  //   actions.login({
-  //     login: state.auth.login,
-  //     password: state.auth.password,
-  //     callback: callback,
-  //   })
-  // },
+  logout({ commit }) {
+
+    mainApp.$f7.preloader.show()
+    commit(RESET_AUTH, 'login')
+    commit(RESET_AUTH, 'secret')
+
+    fetch.auth.logout().catch( error => {
+      return error
+    }).then( () => {
+      commit(CHECK_EXIT)
+      setTimeout(()=> {
+        mainApp.$f7.preloader.hide()
+      }, 1000)
+    })
+  },
+
+  reLogin({ actions, state }, { callback }) {
+    console.log('>>> state =', state)
+    actions.login({
+      login: state.auth.login,
+      password: state.auth.password,
+      callback: callback,
+    })
+  },
 
   clearAuth({ commit }) {
-    console.log('Clear Auth ', RESET_AUTH)
     commit(RESET_AUTH, 'message')
   },
 }

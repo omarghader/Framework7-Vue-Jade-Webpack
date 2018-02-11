@@ -7,12 +7,12 @@
 
     <!-- Left Panel -->
     <f7-panel left reveal theme-dark>
-      <f7-view url="/panel-left/"></f7-view>
+      <f7-view id="panel-left" url="/panel-left"></f7-view>
     </f7-panel>
 
     <!-- Right Panel -->
     <f7-panel right cover theme-dark>
-      <f7-view url="/panel-right/"></f7-view>
+      <f7-view id="panel-right" url="/panel-right/"></f7-view>
     </f7-panel>
 
     <!-- Main View -->

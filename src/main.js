@@ -24,8 +24,12 @@ import App from './app';
 // Init F7 Vue Plugin
 Vue.use(Framework7Vue, Framework7)
 
-import store from '@/vuex/store'
+// Import components
+import editor from '@/components/editor.vue'
+Vue.component('editor', editor)
 
+
+import store from '@/vuex/store'
 
 Vue.use(VueI18n)
 
@@ -55,6 +59,6 @@ window.mainApp = new Vue({
   },
   // Register App Component
   components: {
-    app: App
+    app: App,
   }
 });

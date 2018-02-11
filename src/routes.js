@@ -11,34 +11,42 @@ import LoginPage from './pages/login/index.js';
 
 export default [
   {
+    name:'home',
     path: '/',
     component: HomePage,
   },
   {
+    name:'login',
     path: '/login',
     component: LoginPage
   },
   {
+    name:'panel-left',
     path: '/panel-left/',
     component: PanelLeftPage,
   },
   {
+    name:'panel-right',
     path: '/panel-right/',
     component: PanelRightPage,
   },
   {
+    name:'about',
     path: '/about/',
     component: AboutPage,
   },
   {
+    name:'form',
     path: '/form/',
     component: FormPage,
   },
   {
+    name:'dynamic-route',
     path: '/dynamic-route/blog/:blogId/post/:postId/',
     component: DynamicRoutePage,
   },
   {
+    name:'error',
     path: '(.*)',
     component: NotFoundPage,
   },

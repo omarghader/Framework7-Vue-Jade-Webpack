@@ -31,7 +31,7 @@ const KONTR = 'ООО МАЭРСК'
       this._id = `${randomChar(5)}-${randomNumb(9)}`
       this.text = randomChar(20)
       this.photos_url = ['https://42mzqz26jebqf6rd034t5pef-wpengine.netdna-ssl.com/wp-content/uploads/2013/02/landscape_taxonomy_04.jpg',
-      'https://42mzqz26jebqf6rd034t5pef-wpengine.netdna-ssl.com/wp-content/uploads/2013/02/landscape_taxonomy_04.jpg']
+      'https://images.unsplash.com/photo-1476610182048-b716b8518aae?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=0d08086d86a9b5b98cb37a9bccee1dbb&dpr=1&auto=format&fit=crop&w=376&h=227&q=60&cs=tinysrgb']
       this.timestamp = randomDate()
       this.comments_count = randomNumb(2)
       this.likes_count = randomNumb(2)

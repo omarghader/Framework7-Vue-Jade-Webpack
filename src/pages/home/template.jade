@@ -1,25 +1,29 @@
 f7-page
-  f7-navbar(:title="$t('home.title')")
+  f7-navbar
     f7-nav-left
-      f7-link(v-show="!secret", login-screen-open="#loginPage", icon-f7='login', icon-size='22') 
-    //- f7-nav-title()
+      f7-link(v-show="!username", login-screen-open="#loginPage", icon-f7='login', icon-size='22') 
+      f7-link(icon-if-ios="f7:menu", icon-if-md="material:menu", panel-open="left")
+      //- f7-link(v-show="username", @click="logout", icon-f7='logout', icon-size='22') 
+    f7-nav-title(:title="$t('home.title')")
     
     f7-nav-right
-      f7-link(popup-open='#publisherPopup', icon-f7='compose', icon-size='22') 
+      f7-link(popup-open='#publisherPopup', icon-f7='compose', icon-size='22')
+      
     
-      //- f7-button(fill,raised,popup-open="#publisherPopup") Popup
+  //- f7-button(fill,raised,popup-open="#publisherPopup") Popup
+
   //- Floating Button 
-  f7-fab(color='pink', @click='doSomething')
-    // First icon is visible when Speed Dial actions are closed
-    f7-icon(f7='add')
-    // Second icon is visible when Speed Dial actions are opened
-    f7-icon(f7='close')
-    // Speed Dial Buttons
-    f7-fab-buttons
-      f7-fab-button(color='orange') A
-      f7-fab-button(color='green') B
-      f7-fab-button(color='blue') C
-  f7-link.raised.big.fill(href="#", login-screen-open="#loginPage") Open Login Screen
+  //- f7-fab(color='pink', @click='doSomething')
+  //-   // First icon is visible when Speed Dial actions are closed
+  //-   f7-icon(f7='add')
+  //-   // Second icon is visible when Speed Dial actions are opened
+  //-   f7-icon(f7='close')
+  //-   // Speed Dial Buttons
+  //-   f7-fab-buttons
+  //-     f7-fab-button(color='orange') A
+  //-     f7-fab-button(color='green') B
+  //-     f7-fab-button(color='blue') C
+
 
   div(v-if="posts.length <= 0")
     f7-block-title No data to display
@@ -34,8 +38,11 @@ f7-page
         .demo-facebook-name {{post.owner.displayname}}
         .demo-facebook-date {{fromNow(post.date)}}
       .card-content.card-content-padding
-        p {{post.post_text}}
-        img(:src="post.medias.photos_url[0]", class="center-cropped", @click="openPhotoBrowser(post)")
+        p {{post.medias.text}}
+        f7-swiper(pagination='', navigation='', scrollbar='')
+          f7-swiper-slide(v-for="photo in post.medias.photos_url") 
+            img(:src="photo", class="center-cropped", @click="openPhotoBrowser(post)")
+
         p.likes Likes: {{post.medias.likes_count}}    Comments: {{post.medias.comments_count}}
       .card-footer
         a.link(href='#') Like

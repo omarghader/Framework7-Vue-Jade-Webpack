@@ -6,4 +6,7 @@ f7-popup#publisherPopup
       f7-nav-title(:title="$t('publisher.title')")
       f7-nav-right
         f7-link(:text="$t('publisher.send')", @click='sendTweet')
-    editor(:placeholder="$t('publisher.placeholder')", @text:change='editorTextChange')
+    editor(:placeholder="$t('publisher.placeholder')", @photos:choose='handleChoosePhotos')
+    
+    #containerPhotos
+      img(:src="photo",  v-for="photo in photos", width="50", height="50")

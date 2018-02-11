@@ -27,7 +27,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(['getPostList']),
+    ...mapActions(['getPostList', 'logout']),
 
     fromNow: function (timestamp){
       return moment(timestamp).fromNow()
@@ -51,7 +51,6 @@ export default {
   },
   created() {
   },
-
   mounted() {
 
     // this.getPostList()

@@ -75,12 +75,13 @@ export default {
       // this.getProfile()
       // this.getSettings()
 
+      console.log('redirect')
       var route = {
         name: 'tabs',
         params: {tab: 'containers'}
       }
 
-      this.$router.go(route)
+      // this.$router.go(route)
     },
   },
 
