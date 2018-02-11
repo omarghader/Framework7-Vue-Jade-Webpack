@@ -1,0 +1,26 @@
+div
+  a.item-link.close-panel.color-white.no-border(
+    link="{name: 'profile'}",
+    :style.once='style',
+    valign='bottom',
+    class=style.profile)
+      .content-block.text-center
+        img(v-if='src', :src='src', alt='')
+        f7-icon(if-ios="f7:person", if-md="material:person", size="5rem")
+        //- icon(v-else, id='profile')
+      .content-block(
+        v-if="companyName",
+        class=style.name) {{ companyName }}
+      .content-block(class=style.currency) 1 euro, 1.21 $
+      //- {{ summa  | formatSumm | summaTitle}}
+
+  .list-group(v-for='pages in menu')
+    .list.no-margin
+      ul
+        li(v-for='page in pages')
+          a.item-link.item-content.panel-close(:href="page.link.path")
+            .item-media
+              i.f7-icons {{page.icon}}
+            .item-inner
+              .item-title {{$t(page.title)}}
+              .item-after {{page.badge}}

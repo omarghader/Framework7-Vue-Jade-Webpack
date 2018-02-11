@@ -13,6 +13,8 @@ var en = {
     login: 'Login',
     cancel: 'Cancel',
   },
+  needLogin: 'You need to login to make this action'
+
 }
 
 var fr = {

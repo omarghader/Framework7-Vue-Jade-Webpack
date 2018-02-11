@@ -34,7 +34,7 @@ export function fetch(settings = {}, params) {
   var { fixture, parser } = params
 
   extendSettings(settings, params)
-
+  // console.log('FETCH', settings)
   // TODO: remove this to another point!!!
   // var auth = store.state.auth
   // if (auth.login === 'demo' && auth.password === 'demo') {
@@ -67,7 +67,7 @@ function requireAll(requireContext) {
 function extendSettings(settings, { url }) {
   var headers = {
     'Content-Type': 'application/json',
-    // Authorization: `Bearer ${store.state.auth.secret}`,
+    Authorization: `Bearer ${store.state.auth.secret}`,
   }
 
   // if null - disallow headers in fetch
@@ -75,5 +75,10 @@ function extendSettings(settings, { url }) {
     settings.headers = Object.assign(headers, settings.headers || {})
   }
 
-  settings.url = url
+  settings.url = url+'?'
+  if (settings.params) {
+    for(var key in settings.params) {
+      settings.url = String.format(settings.url + '{0}={1}&', key, settings.params[key] )
+    }
+  }
 }

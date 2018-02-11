@@ -37,9 +37,9 @@ export const mutations = {
 
 // actions
 export const actions = {
-  changeLang({ dispatch }, lang) {
+  changeLang({ commit }, lang) {
     moment.locale(lang)
-    dispatch(CHANGE_LOCAL, lang)
+    commit(CHANGE_LOCAL, lang)
   },
 }
 

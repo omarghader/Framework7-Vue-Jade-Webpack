@@ -1,6 +1,10 @@
+//import polyfill
+import polyfill from '@/services/polyfill.js'
+
 // Import Vue
 import Vue from 'vue';
 import VueI18n from 'vue-i18n'
+
 
 // Import F7
 import Framework7 from 'framework7/dist/framework7.esm.bundle.js';
@@ -20,6 +24,19 @@ import Routes from './routes.js'
 
 // Import App Component
 import App from './app';
+import panelLeft from './pages/panel-left/index.js'
+import popoverLang from '@/components/popover-lang/index.js'
+import itemContentLink from '@/components/item-content-link'
+// import itemContent from '@/components/item-content'
+// import itemContentAccordion from '@/components/item-content-accordion'
+Vue.component('item-content-link', itemContentLink)
+Vue.component('popover-lang', popoverLang)
+
+Vue.component('panelLeft', panelLeft)
+Vue.component('item-content-link', itemContentLink)
+
+// Vue.component('item-content', itemContent))
+// Vue.component('item-content-accordion', itemContentAccordion)
 
 // Init F7 Vue Plugin
 Vue.use(Framework7Vue, Framework7)
@@ -62,3 +79,6 @@ window.mainApp = new Vue({
     app: App,
   }
 });
+
+//Event channel
+window.Events = new Vue()

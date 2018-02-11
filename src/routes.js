@@ -1,13 +1,13 @@
 // import HomePage from './pages/home.vue';
-import AboutPage from './pages/about.vue';
+import AboutPage from './pages/about/index.js';
 import FormPage from './pages/form.vue';
 import DynamicRoutePage from './pages/dynamic-route.vue';
 import NotFoundPage from './pages/not-found.vue';
+import SettingsPage from './pages/settings/index.js';
 
-import PanelLeftPage from './pages/panel-left.vue';
-import PanelRightPage from './pages/panel-right.vue';
 import HomePage from './pages/home/index.js';
 import LoginPage from './pages/login/index.js';
+import FeedbackPage from './pages/feedback/index.js';
 
 export default [
   {
@@ -21,19 +21,19 @@ export default [
     component: LoginPage
   },
   {
-    name:'panel-left',
-    path: '/panel-left/',
-    component: PanelLeftPage,
-  },
-  {
-    name:'panel-right',
-    path: '/panel-right/',
-    component: PanelRightPage,
-  },
-  {
-    name:'about',
     path: '/about/',
     component: AboutPage,
+  },
+  {
+    path: '/feedback/',
+    component: FeedbackPage,
+  },
+  {
+    path: '/settings/',
+    component: SettingsPage,
+  },  {
+    path: '/feedback/',
+    component: FeedbackPage,
   },
   {
     name:'form',

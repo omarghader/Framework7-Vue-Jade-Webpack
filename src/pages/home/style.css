@@ -1,9 +1,7 @@
 .center-cropped {
   width: 100%;
-  height: 20%;
-  /*background-position: center center;*/
-  /*background-repeat: no-repeat*/
-  object-fit: cover
+  height: 120px;
+  object-fit: cover;
 }
 
 
