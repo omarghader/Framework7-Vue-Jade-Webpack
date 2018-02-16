@@ -43,7 +43,7 @@ export class Post {
     this._id = ContainerNumb()
     this.date = randomDate()
     this.owner = new User()
-    this.medias = new Media()
+    this.body = new Media()
 
   }
 }

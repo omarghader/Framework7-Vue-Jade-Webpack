@@ -1,14 +1,24 @@
+import ImageCompressor from 'image-compressor.js';
+
+
 import Storage from '@/services/Storage'
 import fetch from '@/services/fetch'
-import { POST_LIST , SET_PROGRESS, SET_PAGINATION } from '../mutation-types'
+import {
+  POST_LIST,
+  SET_PROGRESS,
+  SET_PAGINATION
+} from '../mutation-types'
+
 
 export let name = 'post'
 
 var defaults = {
-  sortBy : '',
+  sortBy: '',
   pagination: {
     perPage: 20,
-    page : 1
+    page: 1,
+    nextPage: null,
+    previousPage: null
   },
   data: [],
 }
@@ -18,9 +28,12 @@ export const state = Storage.get(name, defaults)
 
 // mutations
 export const mutations = {
-  [POST_LIST](state, {payload, append}) {
+  [POST_LIST](state, {
+    payload,
+    append
+  }) {
 
-    if (append === 'true' ) {
+    if (append === 'true') {
       // push new data to state
       var initialData = state.data
       var newData = payload.data
@@ -36,6 +49,7 @@ export const mutations = {
   },
 
   [SET_PAGINATION](state, pagination) {
+
     state.pagination = pagination
     Storage.set(name, state)
   }
@@ -44,16 +58,30 @@ export const mutations = {
 
 // actions
 export const actions = {
-  getPostList({ /*actions,*/ commit, state }, additionalParams={}) {
+  getPostList({ /*actions,*/
+    commit,
+    state
+  }, params = {}) {
 
     mainApp.$f7.preloader.show()
 
-    fetch.post({params: {...state.pagination}}).then( payload => {
+    fetch.post({
+      params: { ...state.pagination
+      }
+    }).then(payload => {
 
-      console.log(payload, additionalParams)
-      commit(POST_LIST, {payload, append: additionalParams.append || 'false'})
+      console.log('[GETPOST]', payload, params)
+      commit(POST_LIST, {
+        payload,
+        append: params.append || 'false'
+      })
 
-    }).catch( error => {
+      //change pagination
+      if (payload.pagination) {
+        commit(SET_PAGINATION, payload.pagination)
+      }
+
+    }).catch(error => {
       // reLogin !!!
       if (error.status === 401) {
         actions.reLogin({
@@ -61,24 +89,69 @@ export const actions = {
         })
       }
       return error
-    }).then( () => {
+    }).then(() => {
       // commit(SET_PROGRESS, false)
-      setTimeout(()=>{
-          mainApp.$f7.preloader.hide()
-      },500)
+      mainApp.$f7.preloader.hide()
 
     })
   },
 
-  getNextPage({dispatch, commit, state}, pagination) {
-    commit(SET_PAGINATION, pagination )
-    dispatch('getPostList',  {append:'true'})
+  getNextPage({
+    dispatch,
+    commit,
+    state
+  }, pagination) {
+    commit(SET_PAGINATION, pagination)
+    dispatch('getPostList', {
+      append: 'true'
+    })
   },
 
-  resetPagination({commit, state}) {
-    commit(SET_PAGINATION, {
-      perPage: state.pagination.perPage,
-      page: 1
+  resetPagination({
+    commit,
+    state
+  }) {
+
+    let newPagination = Object.assign(state.pagination)
+    newPagination.page = 1
+    commit(SET_PAGINATION, newPagination)
+  },
+
+  createPost({ /*actions,*/
+    commit,
+    state
+  }, params = {}) {
+
+    // show preloader
+    mainApp.$f7.preloader.show()
+
+    const data = Object.assign({}, params)
+    data.rawPhotos = []
+    if (data.originalPhotos) {
+
+    }
+
+    this.$http.post('api/v1/posts', data).then(payload => {
+
+      //change pagination
+      if (payload.pagination) {
+        commit(SET_PAGINATION, payload.pagination)
+      }
+
+      this.$f7.popup.close('#publisherPopup')
+
+    }).catch(error => {
+      // reLogin !!!
+      if (error.status === 401) {
+        actions.reLogin({
+          callback: () => actions.getAdvance()
+        })
+      }
+      return error
+    }).then(() => {
+      // commit(SET_PROGRESS, false)
+      mainApp.$f7.preloader.hide()
+
     })
-  }
+  },
 }

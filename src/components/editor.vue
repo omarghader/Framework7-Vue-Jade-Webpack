@@ -73,9 +73,7 @@ export default {
     }
   },
   created() {
-    this.$on('photos:choose', function(){
-      console.log('hmm')
-    })
+
   },
   watch: {
     editText(text) {
@@ -99,8 +97,8 @@ export default {
       // grab the first image in the FileList object and pass it to the function
       console.log('[onChoosePhotos]', files)
       this.$emit('photos:choose', files)
+    },
 
-    }
   }
 }
 </script>

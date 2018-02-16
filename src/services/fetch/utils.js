@@ -4,19 +4,18 @@ import Vue from 'vue'
 import store from '@/vuex/store'
 
 export const URL = {
-  SERVER: 'http://project-vsctxdraw.c9users.io',
+  SERVER: 'http://localhost:5000/',
 
   login: 'api/login',
   logout: 'api/logout',
   settings: 'api/settings',
 
-  advance: 'api/AdvanceInfo',
+  post: 'api/v1/posts',
   'bill-info': 'api/BillInfo',
   'bill-list': 'api/BillList',
   'container-info': 'api/CntInfo',
   'container-list': 'api/CntList',
   profile: 'api/KontrInfo',
-  post: 'api/post',
 
   news: 'rss.html',
 }
@@ -34,14 +33,15 @@ export function fetch(settings = {}, params) {
   var { fixture, parser } = params
 
   extendSettings(settings, params)
-  // console.log('FETCH', settings)
   // TODO: remove this to another point!!!
-  // var auth = store.state.auth
-  // if (auth.login === 'demo' && auth.password === 'demo') {
+  var auth = store.state.auth
+  if (auth.login === 'demo' && auth.password === 'demo') {
     return fixture()
-  // }
+  }
 
-  // return Vue.http.get(settings).then(parser)
+  // console.log('FETCH', settings)
+
+  return Vue.http.get(settings.url).then(parser)
 }
 
 /**

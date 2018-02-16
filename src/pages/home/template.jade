@@ -1,4 +1,4 @@
-f7-page(infinite, :infinite-preloader="posts.length > 2",  @infinite="onInfiniteScroll",
+f7-page(infinite, :infinite-preloader="posts.length > 2 && (pagination.nextPage != pagination.page)",  @infinite="onInfiniteScroll",
         ptr, @ptr:refresh="ptrRefresh")
   f7-navbar
     f7-nav-left
@@ -22,12 +22,13 @@ f7-page(infinite, :infinite-preloader="posts.length > 2",  @infinite="onInfinite
         .demo-facebook-name {{post.owner.displayname}}
         .demo-facebook-date {{fromNow(post.date)}}
       .card-content.card-content-padding
-        p {{post.medias.text}}
+        p {{post.body.text}}
+        
         f7-swiper(pagination='', navigation='', scrollbar='')
-          f7-swiper-slide(v-for="photo in post.medias.photos_url") 
+          f7-swiper-slide(v-for="photo in post.body.photos_url", :key="photo" ) 
             img(:src="photo", class="center-cropped", @click="openPhotoBrowser(post)")
 
-        p.likes Likes: {{post.medias.likes_count}}    Comments: {{post.medias.comments_count}}
+        p.likes Likes: {{post.body.likes_count || 0}}    Comments: {{post.body.comments_count || 0}}
       .card-footer
         a.link(href='#', @click="like(post)") 
           f7-icon.padding(if-ios="f7:heart", if-md="f7:heart")
